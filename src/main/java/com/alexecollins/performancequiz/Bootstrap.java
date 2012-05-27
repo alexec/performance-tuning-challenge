@@ -29,9 +29,9 @@ public class Bootstrap {
 
         Set<Customer> customers = new HashSet<Customer>();
 
-        long startTime = System.currentTimeMillis();
+        for (int j = 0; j < 50; j++) {
+            long startTime = System.currentTimeMillis();
 
-        for (int j = 0; j < 1000; j++) {
             int n = 50000;
             List<Future<Customer>> futures = new ArrayList<Future<Customer>>();
             for (int i = 0; i < n; i++) {
@@ -43,9 +43,6 @@ public class Bootstrap {
                     LOGGER.info(x * 100 / n + "% created");
                 }
             }
-
-            LOGGER.info("awaiting completion...");
-
 
             File tempFile = File.createTempFile("customers", ".ser");
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(tempFile));
@@ -65,10 +62,11 @@ public class Bootstrap {
             }
 
             out.close();
+
+            LOGGER.info("iteration " + j +", took " + (System.currentTimeMillis() - startTime) + "ms");
         }
 
         executorService.shutdown();
 
-        LOGGER.info("done, took " + (System.currentTimeMillis() - startTime) + "ms");
     }
 }
