@@ -4,17 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>peformance-quiz</groupId>
+    <groupId>com.alexecollins</groupId>
     <artifactId>peformance-quiz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <url>http://www.alexecollins.com/?q=content/performance-quiz</url>
 
     <description>
-        This app contains performance bugs designed to be analysed using a black box approach to
-        test out your skills at identifying the cause of the bugs.
+        This app contains performance issues designed to be analysed using a black box approach to
+        test out your skills at identifying the cause of the issue.
 
-        * Bug 1 - TODO
+        Naturally, once you've identified a probable cause, you can see if you can fix it.
     </description>
 
     <properties>
@@ -41,10 +41,11 @@
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
                             <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
