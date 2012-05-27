@@ -5,8 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alexecollins</groupId>
-    <artifactId>peformance-quiz</artifactId>
+    <artifactId>performance-quiz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <name>Performance Monitoring, Profiling and Tuning App</name>
 
     <url>http://www.alexecollins.com/?q=content/performance-quiz</url>
 

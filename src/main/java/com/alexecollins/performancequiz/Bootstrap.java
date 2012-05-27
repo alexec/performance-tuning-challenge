@@ -5,10 +5,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -30,8 +27,10 @@ public class Bootstrap {
             }
         };
 
+        Set<Customer> customers = new HashSet<Customer>();
+
         while (true) {
-            int n = 500000;
+            int n = 50000;
             List<Future<Customer>> futures = new ArrayList<Future<Customer>>();
             for (int i = 0; i < n; i++) {
                 futures.add(executorService.submit(callable));
@@ -53,7 +52,9 @@ public class Bootstrap {
 
             int x = 0;
             for (Future<Customer> f : futures) {
-                out.writeObject(f.get());
+                Customer customer = f.get();
+                customers.add(customer);
+                out.writeObject(customer);
                 x++;
 
                 if (x  % (n / 10) == 0) {
