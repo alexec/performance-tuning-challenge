@@ -40,14 +40,14 @@ public class Bootstrap {
                 int x = futures.size();
 
                 if (x  % (n / 10) == 0) {
-                    LOGGER.info(x * 100 / n + "% created");
+                    LOGGER.debug(x * 100 / n + "% created");
                 }
             }
 
             File tempFile = File.createTempFile("customers", ".ser");
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(tempFile));
 
-            LOGGER.info("writing to <" + tempFile + ">");
+            LOGGER.debug("writing to <" + tempFile + ">");
 
             int x = 0;
             for (Future<Customer> f : futures) {
@@ -57,13 +57,13 @@ public class Bootstrap {
                 x++;
 
                 if (x  % (n / 10) == 0) {
-                    LOGGER.info(x * 100 / n + "% written");
+                    LOGGER.debug(x * 100 / n + "% written");
                 }
             }
 
             out.close();
 
-            LOGGER.info("iteration " + j +", took " + (System.currentTimeMillis() - startTime) + "ms");
+            LOGGER.info("iteration " + j + " took " + (System.currentTimeMillis() - startTime) + "ms");
         }
 
         executorService.shutdown();
