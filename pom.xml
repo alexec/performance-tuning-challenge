@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alexecollins</groupId>
-    <artifactId>performance-quiz</artifactId>
+    <artifactId>performance-tuning-challenge</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>Performance Monitoring, Profiling and Tuning App</name>
