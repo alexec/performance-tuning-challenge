@@ -17,7 +17,7 @@ public class Bootstrap {
 
         LOGGER.info("starting up...");
 
-        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 4);
+        ExecutorService executorService = Executors.newFixedThreadPool(16);
 
         Callable<Customer> callable = new Callable<Customer>() {
             private final CustomerFactory customerFactory = new CustomerFactory();
@@ -29,7 +29,9 @@ public class Bootstrap {
 
         Set<Customer> customers = new HashSet<Customer>();
 
-        while (true) {
+        long startTime = System.currentTimeMillis();
+
+        for (int j = 0; j < 1000; j++) {
             int n = 50000;
             List<Future<Customer>> futures = new ArrayList<Future<Customer>>();
             for (int i = 0; i < n; i++) {
@@ -63,8 +65,10 @@ public class Bootstrap {
             }
 
             out.close();
-
-            LOGGER.info("done");
         }
+
+        executorService.shutdown();
+
+        LOGGER.info("done, took " + (System.currentTimeMillis() - startTime) + "ms");
     }
 }
